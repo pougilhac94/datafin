@@ -1,0 +1,56 @@
+body {
+	color: #1e242a;
+	font-family: 'Verdana', sans-serif;
+	width: 960px;
+	height: 700px;
+}
+
+#main {
+	float: left;
+	width: 750px;
+}	
+
+#sidebar {
+	float: right;
+	width: 100px;
+}
+
+#legend, #consommation, #trail {
+	padding: 10px 0 0 3px;
+}
+
+#sequence text, #legend text, #consommation text {
+	font-weight: bold;
+	font-size: 0.8em;
+	fill: white;
+}
+
+#chart {
+	position: relative;
+}
+
+#chart path {
+	stroke: white;
+}
+
+.explanation {
+	position: absolute;
+	top: 220px;
+	left: 285px;
+	width: 180px;
+	text-align: center;
+	color: #666;
+}
+
+#titreDatavis1, #titreDatavis2, #titreDatavis3 {
+	color: #1e242a;
+}
+	
+#libelle {
+	font-size: 14pt;
+	font-weight: bold;
+}
+	
+#percentage, #montant {
+	font-size: 14pt;
+}

@@ -1,0 +1,245 @@
+{
+ "name": "Mission Défense",
+ "type": "HT2",
+ "categorie": "AE",
+ "annee": "2017",
+ "source": "MADI",
+ "dateProduction": "31/01/2018", 
+ "children": [
+	{"name": "PGM 0144", "libelle": "Envir.Prospec.Pol.Defense", "conso": 16, "prev": 12,
+	"children": [
+		{"name": "Action 0144-01", "libelle": "DGRIS","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0144-01-DG01", "size": 49, "libelle": "DGRIS","conso": 0},
+			{"name": "Sous-Action  0144-01-DG02", "size": 0, "libelle": "SCN IRSEM","conso": 0},
+			{"name": "Action 0144-01", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "Action 0144-02", "libelle": "BCAC-CG","conso": 557,
+			"children": [
+			{"name": "Sous-Action  0144-02-DG02", "size": 457, "libelle": "BCAC-CG METIER","conso": 457},
+			{"name": "0144-02", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "Action 0144-03", "libelle": "DRSD","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0144-03-DP02", "size": 14, "libelle": "DRSD AGSC","conso": 0},
+			{"name": "0144-03", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0144-55", "libelle": "DRSD","conso": 944,
+			"children": [
+			{"name": "Sous-Action  0144-55-DG02", "size": 749, "libelle": "DGA SRTS - EA","conso": 549},
+			{"name": "Sous-Action  0144-55-DG03", "size": 295, "libelle": "DGA SRTS - Sub.","conso": 295},
+			{"name": "0144-55", "libelle": "Disponible", "size": 1}
+			]},
+		{"name": "Action 0144-63", "libelle": "EMA",
+			"children": [
+			{"name": "Sous-Action  0144-63-EM04", "size": 28, "libelle": "EMA EOTO","conso": 0},
+			{"name": "0144-63", "libelle": "Disponible", "size": 0,"conso": 0}
+			]},
+		{"name": "0144", "libelle": "Disponible", "size": 5}
+		]},
+ 
+	{"name": "PGM 0146", "libelle": "Équipement des forces","conso": 5750.1, "prev": 1,
+		"children": [
+		{"name": "Action 0146-05", "libelle": "DGA","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-05-DG01", "size": 88, "libelle": "DGA Fonctionnement","conso": 0},
+			{"name": "Sous-Action  0146-05-DG02", "size": 7, "libelle": "DGA Investissements autres","conso": 0},
+			{"name": "Sous-Action  0146-05-DG03", "size": 130, "libelle": "DGA Investissements techniques","conso": 0},
+			{"name": "Sous-Action  0146-05-DG04", "size": 59, "libelle": "DGA / Soutien SCA","conso": 0},
+			{"name": "0146-05", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "Action 0146-09", "libelle": "DRSD","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-09-PE01", "size": 15, "libelle": "Part étrangère Programme civil","conso": 0},
+			{"name": "Sous-Action  0146-09-PE02", "size": 0, "libelle": "DGA Reprise programmes P152","conso": 0},
+			{"name": "0146-09", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0146-17", "libelle": "NBC","conso": 10, "prev": 15,
+			"children": [
+			{"name": "Sous-Action  0146-17-NB01", "size": 1093, "libelle": "UM/NBC","conso": 0},
+			{"name": "0146-17", "libelle": "Disponible", "size": 1}
+			]},
+		{"name": "Action 0146-19", "libelle": "HORUS","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-19-HO01", "size": 211, "libelle": "UM/HORUS","conso": 0},
+			{"name": "0146-19", "libelle": "Disponible", "size": 25}
+			]},
+		{"name": "Action 0146-21", "libelle": "ESIO","conso": 10,
+			"children": [
+			{"name": "Sous-Action  0146-21-ES01", "size": 1294, "libelle": "UM/ESIO","conso": 0},
+			{"name": "0146-21", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "Action 0146-31", "libelle": "HMI","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-31-HE01", "size": 389, "libelle": "UM/HMI","conso": 0},
+			{"name": "0146-31", "libelle": "Disponible", "size": 25}
+			]},
+		{"name": "Action 0146-32", "libelle": "AMS","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-31-32", "size": 664, "libelle": "UM/AMS","conso": 0},
+			{"name": "0146-31", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0146-38", "libelle": "ACE","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-38-AC01", "size": 472, "libelle": "UM/ACE","conso": 0},
+			{"name": "0146-38", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0146-42", "libelle": "NAV","conso": 2750, "prev": 40,
+			"children": [
+			{"name": "Sous-Action  0146-42-NA01", "size": 3634, "libelle": "UM/NAV","conso": 0},
+			{"name": "0146-42", "libelle": "Disponible", "size": 2}
+			]},
+		{"name": "Action 0146-49", "libelle": "COE","conso": 10, "prev": 17,
+			"children": [
+			{"name": "Sous-Action  0146-49-CO01", "size": 1484, "libelle": "UM/COE","conso": 0},
+			{"name": "0146-49", "libelle": "Disponible", "size": 3}
+			]},
+		{"name": "Action 0146-51", "libelle": "TER","conso": 0,
+			"children": [
+			{"name": "Sous-Action  0146-51-TE01", "size": 784, "libelle": "UM/TER","conso": 0},
+			{"name": "0146-51", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0146", "libelle": "Disponible", "size": 5}
+		]},
+	
+	{"name": "PGM 0178", "libelle": "Préparation & Emploi des forces","conso": 30, "prev": 40,
+		"children": [
+		{"name": "Action 0178-11", "libelle": "TERRE","conso": 16,
+			"children": [
+			{"name": "Sous-Action  0178-11-AT01", "size": 97, "libelle": "Ressources humaines*"},
+			{"name": "Sous-Action  0178-11-AT02", "size": 98, "libelle": "Préparation des forces"},
+			{"name": "Sous-Action  0178-11-AT03", "size": 731, "libelle": "MCO et réalisation matériels terrestres"},
+			{"name": "Sous-Action  0178-11-AT04", "size": 233, "libelle": "EMAT"},
+			{"name": "Sous-Action  0178-11-AT05", "size": 430, "libelle": "MCO et réalisation matériels aéroterrest"},
+			{"name": "Sous-Action  0178-11-AT06", "size": 8, "libelle": "MCO et réalisation matériels nautiques"},
+			{"name": "0178-11", "libelle": "Disponible", "size": 2}
+			]},
+		{"name": "Action 0178-21", "libelle": "MARINE","conso": 850,
+			"children": [
+			{"name": "Sous-Action  0178-21-MM01", "size": 94, "libelle": "EMM Ressources humaines*"},
+			{"name": "Sous-Action  0178-21-MM02", "size": 393, "libelle": "Activité/entrainement des forces"},
+			{"name": "Sous-Action  0178-21-MM03", "size": 725, "libelle": "MCO naval"},
+			{"name": "Sous-Action  0178-21-MM04", "size": 666, "libelle": "MCO aéronaval"},
+			{"name": "Sous-Action  0178-21-MM06", "size": 0, "libelle": "Service Logistique Marine"},
+			{"name": "Sous-Action  0178-21-MM07", "size": 14, "libelle": "MCO matériels terrestres"},
+			{"name": "0178-21", "libelle": "Disponible", "size": 1}
+			]},
+		{"name": "Action 0178-31", "libelle": "AIR","conso": 550,
+			"children": [
+			{"name": "Sous-Action  0178-31-AA01", "size": 51, "libelle": "EMAA Ressources humaines*"},
+			{"name": "Sous-Action  0178-31-AA02", "size": 492, "libelle": "Activités"},
+			{"name": "Sous-Action  0178-31-AA04", "size": 2218, "libelle": "MCO aéronautique"},
+			{"name": "Sous-Action  0178-31-AA05", "size": 48, "libelle": "MCO matériels terrestres"},
+			{"name": "0178-31", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "Action 0178-61", "libelle": "Environnement opérationnel interarmées",
+			"children": [
+			{"name": "Sous-Action  0178-61-EM02", "size": 121, "libelle": "Etats majors interalliés et coop. mil."},
+			{"name": "Sous-Action  0178-61-EM03", "size": 5, "libelle": "Moyens de Cdt IA"},
+			{"name": "Sous-Action  0178-61-EM04", "size": 20, "libelle": "SIOC"},
+			{"name": "Sous-Action  0178-61-EM06", "size": 40, "libelle": "Transports stratégiques"},
+			{"name": "Sous-Action  0178-61-EM07", "size": 5, "libelle": "Opérations spéciales"},
+			{"name": "Sous-Action  0178-61-EM08", "size": 2, "libelle": "Préparation opérationnelle interarmées"},
+			{"name": "Sous-Action  0178-61-EM09", "size": 5, "libelle": "Enseignement militaire supérieur"},
+			{"name": "Sous-Action  0178-61-EM11", "size": 3, "libelle": "Coordinations opérationnelles"},
+			{"name": "Sous-Action  0178-61-EM12", "size": 0, "libelle": "EMIA des FAA"},
+			{"name": "Sous-Action  0178-61-EM13", "size": 1, "libelle": "EMIA des FANC"},
+			{"name": "Sous-Action  0178-61-EM14", "size": 1, "libelle": "EMIA des FAPF"},
+			{"name": "Sous-Action  0178-61-EM15", "size": 0, "libelle": "EMIA des FAG"},
+			{"name": "Sous-Action  0178-61-EM16", "size": 0, "libelle": "EMIA des FAZSOI"},
+			{"name": "Sous-Action  0178-61-EM17", "size": 1, "libelle": "EMIA des EFG (Gabon)"},
+			{"name": "Sous-Action  0178-61-EM18", "size": 1, "libelle": "Cdt des éléments français au Sénégal"},
+			{"name": "Sous-Action  0178-61-EM19", "size": 1, "libelle": "EMIA des FFDJ"},
+			{"name": "Sous-Action  0178-61-EM20", "size": 1, "libelle": "EMIA des FFEAU"},
+			{"name": "Sous-Action  0178-61-EM21", "size": 1, "libelle": "EMIA des FFCI (For. Fran. Côte d'Ivoire)"},
+			{"name": "Sous-Action  0178-61-EM22", "size": 12, "libelle": "Cyberdefense"},
+			{"name": "0178-61", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0178-62", "libelle": "OPEX/MISSINT",
+			"children": [
+			{"name": "Sous-Action  0178-62-OP01", "size": 127, "libelle": "OPEX - Dépenses centralisées"},
+			{"name": "Sous-Action  0178-62-OP02", "size": 92, "libelle": "Transport stratégique OPEX"},
+			{"name": "Sous-Action  0178-62-OP04", "size": 71, "libelle": "Autres opérations extérieures"},
+			{"name": "Sous-Action  0178-62-OP06", "size": 7, "libelle": "Daman*"},
+			{"name": "Sous-Action  0178-62-OP07", "size": 123, "libelle": "BARKHANE"},
+			{"name": "Sous-Action  0178-62-OP10", "size": 41, "libelle": "OPEX cadre organisations internationales"},
+			{"name": "0178-62", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0178-64", "libelle": "SSA",
+			"children": [
+			{"name": "Sous-Action  0178-64-SS02", "size": 263, "libelle": "Formation"},
+			{"name": "Sous-Action  0178-64-SS03", "size": 19, "libelle": "Offre de soins - Expertises"},
+			{"name": "Sous-Action  0178-64-SS04", "size": 6, "libelle": "Ressources spécialisées"},
+			{"name": "Sous-Action  0178-64-SS06", "size": 2, "libelle": "Emploi"},
+			{"name": "0178-64", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0178-66", "libelle": "DIRISI",
+			"children": [
+			{"name": "Sous-Action  0178-66-DI02", "size": 190, "libelle": "DIRISI"},
+			{"name": "0178-66", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0178-67", "libelle": "DRM",
+			"children": [
+			{"name": "Sous-Action  0178-67-DR02", "size": 48, "libelle": "DRM"},
+			{"name": "0178-67", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0178-68", "libelle": "Soutien et logistique interarmées",
+			"children": [
+			{"name": "Sous-Action  0178-68-EM05", "size": 141, "libelle": "Logistique IA"},
+			{"name": "Sous-Action  0178-68-EM06", "size": 14, "libelle": "Centre national des sports de la défense"},
+			{"name": "Sous-Action  0178-68-SC01", "size": 62, "libelle": "Service du Commissariat des Armées*"},
+			{"name": "Sous-Action  0178-68-SC02", "size": 183, "libelle": "SCA-habillement commun et du combattant"},
+			{"name": "Sous-Action  0178-68-SC03", "size": 45, "libelle": "SCA-matériel de projection et vivres ops"},
+			{"name": "Sous-Action  0178-68-SC04", "size": 229, "libelle": "SCA dépenses d'alimentation"},
+			{"name": "Sous-Action  0178-68-SI01", "size": 19, "libelle": "Service interarmées des munitions"},
+			{"name": "Sous-Action  0178-68-SO02", "size": 791, "libelle": "Soutiens centralisés"},
+			{"name": "0178-68", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0178", "libelle": "Disponible", "size": 3}
+		]},
+	
+	{"name":"PGM 0212", "libelle": "Soutien Politique Defense","conso": 20,
+		"children": [
+		{"name": "Action 0212-70", "libelle": "SIC","conso": 1,
+			"children": [
+			{"name": "Sous-Action  0212-70-SI01", "size": 125, "libelle": "SIC"},
+			{"name": "0212-70", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0212-72", "libelle": "APRH",
+			"children": [
+			{"name": "Sous-Action  0212-72-AP01", "size": 97, "libelle": "APRH Action sociale"},
+			{"name": "Sous-Action  0212-72-AP04", "size": 16, "libelle": "APRH FORMATION"},
+			{"name": "Sous-Action  0212-72-AP08", "size": 2, "libelle": "Frais de gestion"},
+			{"name": "0212-72", "libelle": "Disponible", "size": 20}
+			]},
+		{"name": "Action 0212-75", "libelle": "CPI","conso": 11,
+			"children": [
+			{"name": "Sous-Action  0212-75-CP01", "size": 277, "libelle": "CPI DPMA"},
+			{"name": "Sous-Action  0212-75-CP02", "size": 1151, "libelle": "CPI DCSID"},
+			{"name": "Sous-Action  0212-75-CP03", "size": 280, "libelle": "DCSID BDD"},
+			{"name": "0212-75", "libelle": "Disponible", "size": 1}
+			]},
+		{"name": "Action 0212-77", "libelle": "SOUTIEN","conso": 8,
+			"children": [
+			{"name": "Sous-Action  0212-77-SO01", "size": 157, "libelle": "SDPRHF"},
+			{"name": "Sous-Action  0212-77-SO02", "size": 1112, "libelle": "SPAC"},
+			{"name": "Sous-Action  0212-77-SO03", "size": 23, "libelle": "DICoD"},
+			{"name": "Sous-Action  0212-77-SO04", "size": 13, "libelle": "SID"},
+			{"name": "0212-77", "libelle": "Disponible", "size": 150}
+			]},
+		{"name": "Action 0212-7A", "libelle": "Culture Patrimoine",
+			"children": [
+			{"name": "Sous-Action  0212-7A-CU01", "size": 23, "libelle": "DPMA Culture Patrimoine"},
+			{"name": "Sous-Action  0212-7A-CU02", "size": 4, "libelle": "SHD"},
+			{"name": "0212-7A", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "Action 0212-7B", "libelle": "ARD",
+			"children": [
+			{"name": "Sous-Action  0212-7B-AR01", "size": 36, "libelle": "ARD"},
+			{"name": "0212-7B", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0212", "libelle": "Disponible", "size": 2}
+		]}
+
+]}
+

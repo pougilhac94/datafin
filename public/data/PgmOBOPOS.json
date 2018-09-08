@@ -1,0 +1,258 @@
+{
+ "name": "Mission Défense",
+ "type": "HT2",
+ "categorie": "AE",
+ "annee": "2017",
+ "source": "MADI",
+ "dateProduction": "31/01/2018", 
+ "children": [
+	{"name": "PGM 0144", "libelle": "Envir.Prospec.Pol.Defense", "conso": 1006, "prev": 1200,
+	"children": [
+		{"name": "OB 0144-0001", "libelle": "DGRIS","conso": 0,
+			"children": [
+			{"name": "OP 0144-0001-DG01", "size": 49, "libelle": "DGRIS","conso": 0,
+				"children": [
+					{"name": "OS 0144-0001-DG01-AA", "size": 49, "libelle": "AAAA","conso": 0},
+					{"name": "OS 0144-0001-DG01-BB", "size": 0, "libelle": "BBBB","conso": 0}
+				]},
+			{"name": "OP 0144-0001-DG02", "size": 0, "libelle": "SCN IRSEM","conso": 0},
+			{"name": "OB 0144-0001", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "OB 0144-0002", "libelle": "BCAC-CG","conso": 557,
+			"children": [
+			{"name": "OP 0144-0002-DG02", "size": 457, "libelle": "BCAC-CG METIER","conso": 457,
+				"children": [
+					{"name": "OS 0144-0002-DG02-A2", "size": 450, "libelle": "A2","conso": 0},
+					{"name": "OS 0144-0002-DG02-B2", "size": 200, "libelle": "B2","conso": 0}
+				]},
+			{"name": "0144-0002", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "OB 0144-0003", "libelle": "DRSD","conso": 0,
+			"children": [
+			{"name": "OP 0144-0003-DP02", "size": 14, "libelle": "DRSD AGSC","conso": 0},
+			{"name": "0144-0003", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0144-0055", "libelle": "DRSD","conso": 944,
+			"children": [
+			{"name": "OP 0144-0055-DG02", "size": 749, "libelle": "DGA SRTS - EA","conso": 549,
+				"children": [
+					{"name": "OS 0144-0055-DG02-A55", "size": 150, "libelle": "AAAA","conso": 0},
+					{"name": "OS 0144-0055-DG02-B55", "size": 250, "libelle": "AAAA","conso": 0},
+					{"name": "OS 0144-0055-DG02-C55", "size": 300, "libelle": "BBBB","conso": 0}
+				]},
+			{"name": "OP 0144-0055-DG03", "size": 295, "libelle": "DGA SRTS - Sub.","conso": 295},
+			{"name": "0144-0055", "libelle": "Disponible", "size": 100}
+			]},
+		{"name": "OB 0144-0063", "libelle": "EMA",
+			"children": [
+			{"name": "OP 0144-0063-EM04", "size": 28, "libelle": "EMA EOTO","conso": 0},
+			{"name": "0144-0063", "libelle": "Disponible", "size": 0,"conso": 0}
+			]},
+		{"name": "0144", "libelle": "Disponible", "size": 500}
+		]},
+ 
+	{"name": "PGM 0146", "libelle": "Équipement des forces","conso": 5750.1, "prev": 10000,
+		"children": [
+		{"name": "OB 0146-0005", "libelle": "DGA","conso": 0,
+			"children": [
+			{"name": "OP 0146-0005-DG01", "size": 88, "libelle": "DGA Fonctionnement","conso": 0},
+			{"name": "OP 0146-0005-DG02", "size": 7, "libelle": "DGA Investissements autres","conso": 0},
+			{"name": "OP 0146-0005-DG03", "size": 130, "libelle": "DGA Investissements techniques","conso": 0},
+			{"name": "OP 0146-0005-DG04", "size": 59, "libelle": "DGA / Soutien SCA","conso": 0},
+			{"name": "0146-0005", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "OB 0146-0009", "libelle": "DRSD","conso": 0,
+			"children": [
+			{"name": "OP 0146-0009-PE01", "size": 15, "libelle": "Part étrangère Programme civil","conso": 0},
+			{"name": "OP 0146-0009-PE02", "size": 0, "libelle": "DGA Reprise programmes P152","conso": 0},
+			{"name": "0146-0009", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0146-0017", "libelle": "NBC","conso": 1000, "prev": 1500,
+			"children": [
+			{"name": "OP 0146-0017-NB01", "size": 1093, "libelle": "UM/NBC","conso": 0},
+			{"name": "0146-0017", "libelle": "Disponible", "size": 100}
+			]},
+		{"name": "OB 0146-0019", "libelle": "HORUS","conso": 0,
+			"children": [
+			{"name": "OP 0146-0019-HO01", "size": 211, "libelle": "UM/HORUS","conso": 0},
+			{"name": "0146-0019", "libelle": "Disponible", "size": 25}
+			]},
+		{"name": "OB 0146-0021", "libelle": "ESIO","conso": 1000,
+			"children": [
+			{"name": "OP 0146-0021-ES01", "size": 1294, "libelle": "UM/ESIO","conso": 0},
+			{"name": "0146-0021", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "OB 0146-0031", "libelle": "HMI","conso": 0,
+			"children": [
+			{"name": "OP 0146-0031-HE01", "size": 389, "libelle": "UM/HMI","conso": 0},
+			{"name": "0146-0031", "libelle": "Disponible", "size": 25}
+			]},
+		{"name": "OB 0146-0032", "libelle": "AMS","conso": 0,
+			"children": [
+			{"name": "OP 0146-0031-0032", "size": 664, "libelle": "UM/AMS","conso": 0},
+			{"name": "0146-0031", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0146-0038", "libelle": "ACE","conso": 0,
+			"children": [
+			{"name": "OP 0146-0038-AC01", "size": 472, "libelle": "UM/ACE","conso": 0},
+			{"name": "0146-0038", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0146-0042", "libelle": "NAV","conso": 2750, "prev": 4000,
+			"children": [
+			{"name": "OP 0146-0042-NA01", "size": 3634, "libelle": "UM/NAV","conso": 0},
+			{"name": "0146-0042", "libelle": "Disponible", "size": 200}
+			]},
+		{"name": "OB 0146-0049", "libelle": "COE","conso": 1000, "prev": 1700,
+			"children": [
+			{"name": "OP 0146-0049-CO01", "size": 1484, "libelle": "UM/COE","conso": 0},
+			{"name": "0146-0049", "libelle": "Disponible", "size": 300}
+			]},
+		{"name": "OB 0146-0051", "libelle": "TER","conso": 0,
+			"children": [
+			{"name": "OP 0146-0051-TE01", "size": 784, "libelle": "UM/TER","conso": 0},
+			{"name": "0146-0051", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0146", "libelle": "Disponible", "size": 500}
+		]},
+	
+	{"name": "PGM 0178", "libelle": "Préparation & Emploi des forces","conso": 3000, "prev": 4000,
+		"children": [
+		{"name": "OB 0178-0011", "libelle": "TERRE","conso": 1600,
+			"children": [
+			{"name": "OP 0178-0011-AT01", "size": 97, "libelle": "Ressources humaines*"},
+			{"name": "OP 0178-0011-AT02", "size": 98, "libelle": "Préparation des forces"},
+			{"name": "OP 0178-0011-AT03", "size": 731, "libelle": "MCO et réalisation matériels terrestres"},
+			{"name": "OP 0178-0011-AT04", "size": 233, "libelle": "EMAT"},
+			{"name": "OP 0178-0011-AT05", "size": 430, "libelle": "MCO et réalisation matériels aéroterrest"},
+			{"name": "OP 0178-0011-AT06", "size": 8, "libelle": "MCO et réalisation matériels nautiques"},
+			{"name": "0178-0011", "libelle": "Disponible", "size": 200}
+			]},
+		{"name": "OB 0178-0021", "libelle": "MARINE","conso": 850,
+			"children": [
+			{"name": "OP 0178-0021-MM01", "size": 94, "libelle": "EMM Ressources humaines*"},
+			{"name": "OP 0178-0021-MM02", "size": 393, "libelle": "Activité/entrainement des forces"},
+			{"name": "OP 0178-0021-MM03", "size": 725, "libelle": "MCO naval"},
+			{"name": "OP 0178-0021-MM04", "size": 666, "libelle": "MCO aéronaval"},
+			{"name": "OP 0178-0021-MM06", "size": 0, "libelle": "Service Logistique Marine"},
+			{"name": "OP 0178-0021-MM07", "size": 14, "libelle": "MCO matériels terrestres"},
+			{"name": "0178-0021", "libelle": "Disponible", "size": 100}
+			]},
+		{"name": "OB 0178-0031", "libelle": "AIR","conso": 550,
+			"children": [
+			{"name": "OP 0178-0031-AA01", "size": 51, "libelle": "EMAA Ressources humaines*"},
+			{"name": "OP 0178-0031-AA02", "size": 492, "libelle": "Activités"},
+			{"name": "OP 0178-0031-AA04", "size": 2218, "libelle": "MCO aéronautique"},
+			{"name": "OP 0178-0031-AA05", "size": 48, "libelle": "MCO matériels terrestres"},
+			{"name": "0178-0031", "libelle": "Disponible", "size": 50}
+			]},
+		{"name": "OB 0178-0061", "libelle": "Environnement opérationnel interarmées",
+			"children": [
+			{"name": "OP 0178-0061-EM02", "size": 121, "libelle": "Etats majors interalliés et coop. mil."},
+			{"name": "OP 0178-0061-EM03", "size": 5, "libelle": "Moyens de Cdt IA"},
+			{"name": "OP 0178-0061-EM04", "size": 20, "libelle": "SIOC"},
+			{"name": "OP 0178-0061-EM06", "size": 40, "libelle": "Transports stratégiques"},
+			{"name": "OP 0178-0061-EM07", "size": 5, "libelle": "Opérations spéciales"},
+			{"name": "OP 0178-0061-EM08", "size": 2, "libelle": "Préparation opérationnelle interarmées"},
+			{"name": "OP 0178-0061-EM09", "size": 5, "libelle": "Enseignement militaire supérieur"},
+			{"name": "OP 0178-0061-EM11", "size": 3, "libelle": "Coordinations opérationnelles"},
+			{"name": "OP 0178-0061-EM12", "size": 0, "libelle": "EMIA des FAA"},
+			{"name": "OP 0178-0061-EM13", "size": 1, "libelle": "EMIA des FANC"},
+			{"name": "OP 0178-0061-EM14", "size": 1, "libelle": "EMIA des FAPF"},
+			{"name": "OP 0178-0061-EM15", "size": 0, "libelle": "EMIA des FAG"},
+			{"name": "OP 0178-0061-EM16", "size": 0, "libelle": "EMIA des FAZSOI"},
+			{"name": "OP 0178-0061-EM17", "size": 1, "libelle": "EMIA des EFG (Gabon)"},
+			{"name": "OP 0178-0061-EM18", "size": 1, "libelle": "Cdt des éléments français au Sénégal"},
+			{"name": "OP 0178-0061-EM19", "size": 1, "libelle": "EMIA des FFDJ"},
+			{"name": "OP 0178-0061-EM20", "size": 1, "libelle": "EMIA des FFEAU"},
+			{"name": "OP 0178-0061-EM21", "size": 1, "libelle": "EMIA des FFCI (For. Fran. Côte d'Ivoire)"},
+			{"name": "OP 0178-0061-EM22", "size": 12, "libelle": "Cyberdefense"},
+			{"name": "0178-0061", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0178-0062", "libelle": "OPEX/MISSINT",
+			"children": [
+			{"name": "OP 0178-0062-OP01", "size": 127, "libelle": "OPEX - Dépenses centralisées"},
+			{"name": "OP 0178-0062-OP02", "size": 92, "libelle": "Transport stratégique OPEX"},
+			{"name": "OP 0178-0062-OP04", "size": 71, "libelle": "Autres opérations extérieures"},
+			{"name": "OP 0178-0062-OP06", "size": 7, "libelle": "Daman*"},
+			{"name": "OP 0178-0062-OP07", "size": 123, "libelle": "BARKHANE"},
+			{"name": "OP 0178-0062-OP10", "size": 41, "libelle": "OPEX cadre organisations internationales"},
+			{"name": "0178-0062", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0178-0064", "libelle": "SSA",
+			"children": [
+			{"name": "OP 0178-0064-SS02", "size": 263, "libelle": "Formation"},
+			{"name": "OP 0178-0064-SS03", "size": 19, "libelle": "Offre de soins - Expertises"},
+			{"name": "OP 0178-0064-SS04", "size": 6, "libelle": "Ressources spécialisées"},
+			{"name": "OP 0178-0064-SS06", "size": 2, "libelle": "Emploi"},
+			{"name": "0178-0064", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0178-0066", "libelle": "DIRISI",
+			"children": [
+			{"name": "OP 0178-0066-DI02", "size": 190, "libelle": "DIRISI"},
+			{"name": "0178-0066", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0178-0067", "libelle": "DRM",
+			"children": [
+			{"name": "OP 0178-0067-DR02", "size": 48, "libelle": "DRM"},
+			{"name": "0178-0067", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0178-0068", "libelle": "Soutien et logistique interarmées",
+			"children": [
+			{"name": "OP 0178-0068-EM05", "size": 141, "libelle": "Logistique IA"},
+			{"name": "OP 0178-0068-EM06", "size": 14, "libelle": "Centre national des sports de la défense"},
+			{"name": "OP 0178-0068-SC01", "size": 62, "libelle": "Service du Commissariat des Armées*"},
+			{"name": "OP 0178-0068-SC02", "size": 183, "libelle": "SCA-habillement commun et du combattant"},
+			{"name": "OP 0178-0068-SC03", "size": 45, "libelle": "SCA-matériel de projection et vivres ops"},
+			{"name": "OP 0178-0068-SC04", "size": 229, "libelle": "SCA dépenses d'alimentation"},
+			{"name": "OP 0178-0068-SI01", "size": 19, "libelle": "Service interarmées des munitions"},
+			{"name": "OP 0178-0068-SO02", "size": 791, "libelle": "Soutiens centralisés"},
+			{"name": "0178-0068", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0178", "libelle": "Disponible", "size": 300}
+		]},
+	
+	{"name":"PGM 0212", "libelle": "Soutien Politique Defense","conso": 2000,
+		"children": [
+		{"name": "OB 0212-0070", "libelle": "SIC","conso": 100,
+			"children": [
+			{"name": "OP 0212-0070-SI01", "size": 125, "libelle": "SIC"},
+			{"name": "0212-0070", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0212-0072", "libelle": "APRH",
+			"children": [
+			{"name": "OP 0212-0072-AP01", "size": 97, "libelle": "APRH Action sociale"},
+			{"name": "OP 0212-0072-AP04", "size": 16, "libelle": "APRH FORMATION"},
+			{"name": "OP 0212-0072-AP08", "size": 2, "libelle": "Frais de gestion"},
+			{"name": "0212-0072", "libelle": "Disponible", "size": 20}
+			]},
+		{"name": "OB 0212-0075", "libelle": "CPI","conso": 1100,
+			"children": [
+			{"name": "OP 0212-0075-CP01", "size": 277, "libelle": "CPI DPMA"},
+			{"name": "OP 0212-0075-CP02", "size": 1151, "libelle": "CPI DCSID"},
+			{"name": "OP 0212-0075-CP03", "size": 280, "libelle": "DCSID BDD"},
+			{"name": "0212-0075", "libelle": "Disponible", "size": 100}
+			]},
+		{"name": "OB 0212-0077", "libelle": "SOUTIEN","conso": 800,
+			"children": [
+			{"name": "OP 0212-0077-SO01", "size": 157, "libelle": "SDPRHF"},
+			{"name": "OP 0212-0077-SO02", "size": 1112, "libelle": "SPAC"},
+			{"name": "OP 0212-0077-SO03", "size": 23, "libelle": "DICoD"},
+			{"name": "OP 0212-0077-SO04", "size": 13, "libelle": "SID"},
+			{"name": "0212-0077", "libelle": "Disponible", "size": 150}
+			]},
+		{"name": "OB 0212-007A", "libelle": "Culture Patrimoine",
+			"children": [
+			{"name": "OP 0212-007A-CU01", "size": 23, "libelle": "DPMA Culture Patrimoine"},
+			{"name": "OP 0212-007A-CU02", "size": 4, "libelle": "SHD"},
+			{"name": "0212-007A", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "OB 0212-007B", "libelle": "ARD",
+			"children": [
+			{"name": "OP 0212-007B-AR01", "size": 36, "libelle": "ARD"},
+			{"name": "0212-007B", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "0212", "libelle": "Disponible", "size": 200}
+		]}
+
+]}
+

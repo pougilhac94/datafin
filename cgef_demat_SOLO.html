@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dématérialisation</title>
+		<!-- Bibliothèque script téléchargement image SVG en PNG -->
+		<script src="./public/js_generic/savePNG/canvas-toBlob.js"></script>
+		<script src="./public/js_generic/savePNG/FileSaver.min.js"></script> 
+		<!-- Bibliothèque scripts JQuery pour Bootstrap et Datatables + FonrAwesome-->
+		<script src="./public/js_generic/jQuery/jquery-1.12.4.min.js"></script>
+		<script src="./public/js_generic/datatables/DataTables-1.10.16.min.js"></script>
+		<script src="./public/js_generic/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="./public/js_generic/fontawesome/js/all.js"></script>
+		<!-- Lot de scripts DATATABLES pour boutons et fonctions d'export des données -->
+		<script src="./public/js_generic/dataTables/dataTables.buttons.min.js"></script>
+		<script src="./public/js_generic/dataTables/buttons.flash.min.js"></script>
+		<script src="./public/js_generic/dataTables/jszip.min.js"></script>
+		<script src="./public/js_generic/dataTables/pdfmake.min.js"></script>
+		<script src="./public/js_generic/dataTables/vfs_fonts.js"></script>
+		<script src="./public/js_generic/dataTables/buttons.html5.min.js"></script>
+		<script src="./public/js_generic/dataTables/buttons.print.min.js"></script>
+		<!-- Bibliothèque scripts Crossfilter -->
+		<script src="./public/js_generic/crossfilter/crossfilter.min.js"></script>
+		<!-- Bibliothèque scripts D3JS V4 -->
+		<script src="./public/js_generic/d3js/d3.v5.min.js"></script>
+		<script src="./public/js_generic//d3js_addon/d3-annotation.min.js"></script>
+		<!-- Bibliothèques CSS Bootstrap et Datatables -->
+		<link rel="stylesheet" type="text/css" href="./public/js_generic/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./public/js_generic/dataTables/DataTables-1.10.16.min.css">
+		<!-- Bibliothèques CSS FontAwesome -->
+		<link rel="stylesheet" type="text/css" href="./public/js_generic/fontawesome/css/all.css">
+		<!-- Bibliothèques CSS personnelles -->
+		<link rel="stylesheet" href="./public/css/datafin_base.css"/>
+	</head>
+	<body class="container-fluid">
+		<!-- En-tête général -->
+		<section class="row header">
+			<span class="col-auto" href="http://d3js.org"><img src="./public/images/d3js.png" alt="d3js.png" height=25 width=25></span>
+			<div href="/home" class="col-auto"><i class="fas fa-home"></i><a href="/home"> Accueil</a></div>
+			<div href="/aboutus" class="col-auto"><i class="fas fa-info"></i><a href="/aboutus"> Aide</a></div>
+			<div href="/menu" class="col-auto"><i class="fas fa-bars"></i><a href="/menu"> Menu</a></div>
+			<div href="/cgef_demat" class="col-auto"><i class="fas fa-eye"></i><a href="/cgef_demat"> CGEF</a></div>
+			<div href="/bud_zbud01" class="col-auto"><i class="fas fa-chart-line"></i><a href="./bud_zbud01.html"> Budget</a></div>
+			<div href="mailto:prenom.nom@intradef.gouv.fr" class="col-auto"><i class="fas fa-address-card"></i><a href="mailto:prenom.nom@intradef.gouv.fr"> Contact</a></div>
+		</section>
+		<section class="row jumbotron jumbotron-datavis">			
+			<div class="col-9 " id='titregeneral'>
+				<!-- Affichage par défaut (suppression automatique si Javasript présent) -->
+				<h1></h1>
+			</div>
+			<div class="col-lg-3 border-dark rounded border-3 border-groove" id='formupload'></div>	
+			
+			<div class="col-8 " id='noJavascript'>
+				<h1>Votre navigateur ne supporte pas javascript, la datavisualisation ne pourra pas s'afficher</h1>
+			</div>	
+		</section>
+		<!-- Corps du document composé de 3 colonnes -->
+		<section class="row">
+			<!-- Colonne gauche banalisée -->
+			<div class="col-lg-2" id='col-gauche'></div>
+			<!-- Colonne centrale -->
+			<div class="col" id='col-centre'>
+				<!-- Zone titre -->
+				<div class="row container-fluid" id="titredatavisualisation"></div>
+				<!-- Zone affichage datavisualisation -->
+				<div class="row">
+					<!-- Zone principale d'affichage de la Datavisualisation -->
+					<div class="col-9" id="main">
+						<!-- Zone affichage des filtres -->
+						<div class="row form-group" id="filtres">
+							<div class="col-auto my-1">
+								<select class="custom-select mr-sm-2" id="choixAnnee"></select>
+							</div>
+							<div class="col-auto my-1">
+								<select class="custom-select mr-sm-2" id="choixChaine"></select>
+							</div>
+							<div class="col-auto my-1">
+								<select class="custom-select mr-sm-2" id="choixDemat"></select>
+							</div>
+							<div class="col-auto my-1">
+								<select class="custom-select mr-sm-2" id="choixTypeTiers"></select>
+							</div>
+							<div class="col-auto my-1">
+								<input class="btn btn-primary" id="resetFiltres" type="reset" value="Suppression filtres"></input>
+							</div>
+							<div class="col-auto form-check">
+								<input type="checkbox" class="form-check-input" id="checkDatatables">
+								<label class="form-check-label" for="checkDatatables">Afficher le détail par entreprises (les filtres sur l'année, le type de factures et le type d'enteprises sont alors obligatoires)</label>
+							</div>	
+						</div>
+						<!-- Zone affichage représentation graphique -->
+						<div id="indicateurs">
+							<span class="titreChart"> Taux de dématérialisation native</span>
+							<div class="fa-10x">								
+								<span class="fa-layers fa-fw">
+									<i class="fas fa-calendar"  ></i>
+									<span id="indANNEEText00"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-13 up-5.5" style="font-size:smaller"></span>
+									<span id="indANNEEText01"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-1" style="font-weight:bold"></span>
+									<span id="indANNEEText02" class="fa-layers-text fa-inverse" data-fa-transform="shrink-14.5 down-5.5" style="font-size:100%"></span>
+								</span>			
+								<span class="fa-layers fa-fw">
+									<i class="fas fa-calendar"></i>
+									<span id="indANNEE_MOISText00"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-13 up-5.5" style="font-size:smaller"></span>
+									<span id="indANNEE_MOISText01"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-1" style="font-weight:bold"></span>
+									<span id="indANNEE_MOISText02" class="fa-layers-text fa-inverse" data-fa-transform="shrink-14.5 down-5.5" style="font-size:100%"></span>
+								</span>
+							</div>
+						</div>
+						<div id="chart01">
+							<div class="container">
+								<div class="row">
+									<div class="titreChart col" id="titreSVG01"></div>
+									<button class="col-md-auto" id="generateSVG01" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" ><span class="fas fa-copy"></span></button>
+								</div>
+							</div>
+							<svg class="svg" id="SVG01" width="790" height="500"></svg>
+						</div>
+						<br>
+						<div id="chart02">
+							<div class="container">
+								<div class="row">
+									<div class="titreChart col" id="titreSVG02"></div>
+									<button class="col-md-auto" id="generateSVG02" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique"><span class="fas fa-copy"></span></button>
+								</div>
+							</div>
+							<svg class="svg" id="SVG02" width="790" height="500"></svg>
+						</div>
+						<br>
+						<div id="chart03">
+							<div class="container">
+								<div class="row">
+									<div class="titreChart col" id="titreSVG03"></div>
+									<button class="col-md-auto" id="generateSVG03" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique"><span class="fas fa-copy"></span></button>
+								</div>
+							</div>
+							<svg class="svg" id="SVG03" width="790" height="500"></svg>
+						</div>
+						<br>
+						<div id="chart04">
+							<div class="container">
+								<div class="row">
+									<div class="titreChart col" id="titreSVG04"></div>
+									<button class="col-md-auto" id="generateSVG04" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique"><span class="fas fa-copy"></span></button>
+								</div>
+							</div>
+							<svg class="svg" id="SVG04" width="790" height="500"></svg>
+						</div>
+						<br>
+						<div id="chart05">
+							<div class="container">
+								<div class="row">
+									<div class="titreChart col" id="titreSVG05"></div>
+									<button class="col-md-auto" id="generateSVG05" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique"><span class="fas fa-copy"></span></button>
+								</div>
+							</div>
+							<svg class="svg" id="SVG05" width="790" height="500"></svg>
+						</div>
+					</div>
+					<!-- Colonne latérale droite pour les options -->
+					<div class="col-3" id="sidebar"></div>
+				</div>
+				<!-- Zone affichage des données DataTables -->
+				<div class="row border-top border-dark pt-2" id="zoneDatatables">
+					<table class="col-12" id="datatables" class="display" style="width:100%"></table>
+				</div>
+			</div>			
+			<!-- Colonne droite banalisée -->
+			<div class="col-lg-2" id='col-droite'></div>
+		</section>
+		<!-- Pied de page -->
+		<section class="row footer justify-content-md-center text-center">
+			<p>Site développé avec D3JS, Datatables,Bootstrap et Font Awesome<br>
+			© Copyright 2018 SGA - Direction des affaires financières - Service du réseau financier et des comptabilités</p>
+		</section>
+
+		<!-- Appel script pour exporter un SVG -->	
+		<script type="text/javascript" src="./public/js/datafin_exportSVG.js"></script>
+		<!-- Appel script pour compléter le HTML
+		<script type="text/javascript" src="js/completeHTML.js"></script> -->
+		<!-- Appel script pour choisir le fichier de données	
+		//<script type="text/javascript" src="js/uploadfile.js"></script> -->
+		<!-- Appel script pour afficher la datavisualisation (D3JS)	 -->
+		<script type="text/javascript" src="./public/js/datafin_cgef_demat.js"></script>
+		<!-- Appel script pour afficher la table de données (DataTables)
+		//<script type="text/javascript" src="js/datatables.js"></script> -->
+	</body>
+</html>

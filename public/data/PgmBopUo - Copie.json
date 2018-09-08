@@ -1,0 +1,42 @@
+{
+ "name": "Mission Défense",
+ "type": "HT2",
+ "categorie": "AE",
+ "annee": "2017",
+ "source": "MADI",
+ "dateProduction": "31/01/2018", 
+ "children": [
+	{"name": "PGM 0144", "libelle": "Envir.Prospec.Pol.Defense", "conso": 1006, "prev": 1200,
+	"children": [
+		{"name": "BOP 0144-0001", "libelle": "DGRIS","conso": 25, "prev": 40,
+			"children": [
+			{"name": "UO  0144-0001-DG01", "size": 49, "libelle": "DGRIS","conso": 25, "prev": 40},
+			{"name": "UO  0144-0001-DG02", "size": 0, "libelle": "SCN IRSEM","conso": 0, "prev": 0},
+			{"name": "0144-0001", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "BOP 0144-0002", "libelle": "BCAC-CG","conso": 457, "prev": 650,
+			"children": [
+			{"name": "UO  0144-0002-DG02", "size": 457, "libelle": "BCAC-CG METIER","conso": 457, "prev": 650},
+			{"name": "0144-0002", "libelle": "Disponible", "size": 10}
+			]},
+		{"name": "BOP 0144-0003", "libelle": "DRSD","conso": 10, "prev": 14,
+			"children": [
+			{"name": "UO  0144-0003-DP02", "size": 14, "libelle": "DRSD AGSC","conso": 10, "prev": 14},
+			{"name": "0144-0003", "libelle": "Disponible", "size": 0}
+			]},
+		{"name": "BOP 0144-0055", "libelle": "DRSD","conso": 844, "prev": 1000,
+			"children": [
+			{"name": "UO  0144-0055-DG02", "size": 749, "libelle": "DGA SRTS - EA","conso": 549, "prev": 700},
+			{"name": "UO  0144-0055-DG03", "size": 295, "libelle": "DGA SRTS - Sub.","conso": 295, "prev": 300},
+			{"name": "0144-0055", "libelle": "Disponible", "size": 100}
+			]},
+		{"name": "BOP 0144-0063", "libelle": "EMA","conso": 20, "prev": 100,
+			"children": [
+			{"name": "UO  0144-0063-EM04", "size": 28, "libelle": "EMA EOTO","conso": 20, "prev": 100},
+			{"name": "0144-0063", "libelle": "Disponible", "size": 0,"conso": 0}
+			]},
+		{"name": "0144", "libelle": "Disponible", "size": 500}
+		]}
+
+]}
+

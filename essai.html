@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dématérialisation</title>
+		<!-- Bibliothèque script téléchargement image SVG en PNG -->
+		<script src="../savePNG/canvas-toBlob.js"></script>
+		<script src="../savePNG/FileSaver.min.js"></script> 
+		<!-- Bibliothèque scripts JQuery pour Bootstrap et Datatables -->
+		<script src="../jQuery/jquery-1.12.4.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../fontawesome/js/all.js"></script>
+		<!-- <script src="../dataTables/DataTables-1.10.16.min.js"></script>-->
+		<!-- Bibliothèque script D3JS V4 -->
+		<script src="../d3js/d3.v4.min.js"></script>
+		<script src="../d3js_addon/d3-annotation.min.js"></script>
+		<!-- <script src="../d3js_addon/d3-fetch.v1.min.js"></script> -->
+		<!-- Bibliothèques CSS Bootstrap et Datatables -->
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../dataTables/DataTables-1.10.16.min.css">-->
+		<!-- Bibliothèques CSS FontAwesome 5.1 -->
+		<link rel="stylesheet" type="text/css" href="../fontawesome/css/all.css">
+		<!-- A TRANSFERER EN FICHIER CSS -->
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+			}
+			#main {
+				width: 960px;
+			}
+
+			.imgComm {
+				position: absolute;
+				left: 0px;	
+			}
+			.dropdown-item{
+				font-size: small;
+			}
+			.line {
+				fill: none;
+				stroke-width: 1px;
+			}
+			.tick {
+				fill: red;
+			}
+			.type circle {
+				fill: #F1F3F3;
+				stroke: steelblue;
+				stroke-width: 1px;
+			}
+			
+			.NATIVE {
+				stroke-width: 5px;
+				font-weight: bold;
+			}	
+		
+			.focus circle {
+			  fill: #F1F3F3;
+			  stroke: steelblue;
+			  stroke-width: 5px;
+			}
+			.annotation-group {
+				z-index: 10;
+			}
+			.hover-line {
+				stroke: steelblue;
+				stroke-width: 2px;
+				stroke-dasharray: 3,3;
+			}
+
+			.overlay {
+				fill: none;
+				pointer-events: all;
+			}
+			</style>
+	</head>
+	<body>
+		<div id="main">
+		
+			<div class="row">
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2" id="choixAnnee">
+					</select>
+				</div>
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2" id="choixChaine">
+					</select>
+				</div>
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2" id="choixDemat">
+					</select>
+				</div>
+				<div class="col-auto my-1">
+					<select class="custom-select mr-sm-2" id="choixTypeTiers">
+					</select>
+				</div>
+
+			</div>
+			<div>
+				<span style="font-size:100%; font-weight:bold"> Taux de dématérialisation natives</span>
+				<div class="fa-10x" id="indicateurs">
+					
+					<span class="fa-layers fa-fw">
+						<i class="fas fa-calendar"  style="color:#0CAA44"></i>
+						<span id="indANNEEText00"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-13 up-5.5" style="font-size:smaller"></span>
+						<span id="indANNEEText01"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-10 down-1" style="font-weight:bold"></span>
+						<span id="indANNEEText02" class="fa-layers-text fa-inverse" data-fa-transform="shrink-14.5 down-5.5" style="font-size:100%"></span>
+					</span>
+
+					<span class="fa-layers fa-fw">
+						<i class="fas fa-calendar"  style="color:#0CAA44"></i>
+						<span id="indANNEE_MOISText00"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-13 up-5.5" style="font-size:smaller"></span>
+						<span id="indANNEE_MOISText01"  class="fa-layers-text fa-inverse" data-fa-transform="shrink-10 down-1" style="font-weight:bold"></span>
+						<span id="indANNEE_MOISText02" class="fa-layers-text fa-inverse" data-fa-transform="shrink-14.5 down-5.5" style="font-size:100%"></span>
+					</span>
+				</div>
+			</div>
+			<div> 
+				<button id="generateSVG01" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><i class="fas fa-copy"></i></button>
+				<button id="generateSVG01C" type="button" data-toggle="tooltip" data-placement="bottom" title="Annotation" style="color:grey"><i class="fas fa-comment"></i></button>
+				<div>
+					<svg class="svg" id="svg01" width="960" height="400">
+					<img class="imgComm" id="img01Comm" src="images/img01Comm.png" width="960" height="500" alt="Mon commentaire 01" style="display: none;"></img>
+				</div>
+
+				<button id="generateSVG02" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><span class="fas fa-copy"></span></button>
+				<button id="generateSVG02C" type="button" data-toggle="tooltip" data-placement="bottom" title="Commentaire" style="color:grey" ><i class="fas fa-comment"></i></button>
+				<div> 
+					<svg class="svg" id="svg02" width="960" height="200"></svg>
+					<img class="imgComm " id="img02Comm" src="images/img02Comm.png" width="960" height="500" alt="Mon commentaire 02" style="display: none;"></img>
+				</div>
+				<button id="generateSVG03" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><i class="fas fa-copy"></i></button>
+				<button id="generateSVG03C" type="button" data-toggle="tooltip" data-placement="bottom" title="Commentaire" style="color:grey"><i class="fas fa-comment"></i></button>
+				<div>
+					<svg class="svg" id="svg03" width="960" height="400">
+					<img class="imgComm" id="img03Comm" src="images/img03Comm.png" width="960" height="500" alt="Mon commentaire 03" style="display: none;"></img>
+				</div>
+			</div>
+		</div>
+
+		<script src="essai.js"></script>
+	</body>
+</html>
