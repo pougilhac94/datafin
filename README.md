@@ -1,2 +1,2 @@
-# datafin
+# DATAFIN
 Datavisualisation des données financières
