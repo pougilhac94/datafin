@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dématérialisation</title>
+		<!-- Bibliothèque script téléchargement image SVG en PNG -->
+		<script src="../savePNG/canvas-toBlob.js"></script>
+		<script src="../savePNG/FileSaver.min.js"></script> 
+		<!-- Bibliothèque scripts JQuery pour Bootstrap et Datatables -->
+		<script src="../jQuery/jquery-1.12.4.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- <script src="../dataTables/DataTables-1.10.16.min.js"></script>-->
+		<!-- Bibliothèque script D3JS V4 -->
+		<script src="../d3js/d3.v4.min.js"></script>
+		<script src="../d3js_addon/d3-annotation.min.js"></script>
+		<!-- Bibliothèques CSS Bootstrap et Datatables -->
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../dataTables/DataTables-1.10.16.min.css">-->
+		<!-- Bibliothèques CSS FontAwesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+		<!--<link rel="stylesheet" href="../fontawesome/css/fontawesome-all.min.css">-->
+		<!-- A TRANSFERER EN FICHIER CSS -->
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+			}
+			#main {
+				width: 960px;
+			}
+
+			.imgComm {
+				position: absolute;
+				left: 0px;	
+			}
+			.dropdown-item{
+				font-size: small;
+			}
+			.line {
+				fill: none;
+				stroke-width: 1px;
+			}
+			.tick {
+				fill: red;
+			}
+			.type circle {
+				fill: #F1F3F3;
+				stroke: steelblue;
+				stroke-width: 1px;
+			}
+			
+			.NATIVE {
+				stroke-width: 5px;
+				font-weight: bold;
+			}
+			
+			
+			.focus circle {
+			  fill: #F1F3F3;
+			  stroke: steelblue;
+			  stroke-width: 5px;
+			}
+			.annotation-group {
+				z-index: 10;
+			}
+			.hover-line {
+				stroke: steelblue;
+				stroke-width: 2px;
+				stroke-dasharray: 3,3;
+			}
+
+			.overlay {
+				fill: none;
+				pointer-events: all;
+			}
+			</style>
+	</head>
+	<body>
+		<div id="main">
+		
+		<div class="row">
+			<div class="col-auto my-1">
+				<select class="custom-select mr-sm-2" id="choixAnnee">
+				</select>
+			</div>
+			<div class="col-auto my-1">
+				<select class="custom-select mr-sm-2" id="choixChaine">
+				</select>
+			</div>
+			<div class="col-auto my-1">
+				<select class="custom-select mr-sm-2" id="choixDemat">
+				</select>
+			</div>
+			<div class="col-auto my-1">
+				<select class="custom-select mr-sm-2" id="choixTypeTiers">
+					<option selected value="">Entreprises...</option>
+					<option value="GE">GE</option>
+					<option value="ETI">ETI</option>
+					<option value="PME">PME</option>
+					<option value="PUBLIC">PUBLIC</option>
+					<option value="-">Non déterminé</option>
+				</select>
+			</div>
+
+		</div>
+			<div> 
+				<button id="generateSVG03" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><i class="fas fa-copy"></i></button>
+				<button id="generateSVG03C" type="button" data-toggle="tooltip" data-placement="bottom" title="Annotation" style="color:grey"><i class="fas fa-comment"></i></button>
+				<div>
+					<svg class="svg" id="svg03" width="960" height="500">
+					<img class="imgComm" id="img03Comm" src="images/img03Comm.png" width="960" height="500" alt="Mon commentaire 03" style="display: none;"></img>
+				</div>
+
+				<button id="generateSVG01" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><span class="fas fa-copy"></span></button>
+				<button id="generateSVG01C" type="button" data-toggle="tooltip" data-placement="bottom" title="Commentaire" style="color:grey" ><i class="fas fa-comment"></i></button>
+				<div> 
+					<svg class="svg" id="svg01" width="960" height="500"></svg>
+					<img class="imgComm " id="img01Comm" src="images/img01Comm.png" width="960" height="500" alt="Mon commentaire 01" style="display: none;"></img>
+				</div>
+				<button id="generateSVG02" type="button" data-toggle="tooltip" data-placement="bottom" title="Copier le graphique" style="color:grey"><i class="fas fa-copy"></i></button>
+				<button id="generateSVG02C" type="button" data-toggle="tooltip" data-placement="bottom" title="Commentaire" style="color:grey"><i class="fas fa-comment"></i></button>
+				<div>
+					<svg class="svg" id="svg02" width="960" height="500">
+					<img class="imgComm" id="img02Comm" src="images/img02Comm.png" width="960" height="500" alt="Mon commentaire 02" style="display: none;"></img>
+				</div>
+			</div>
+		</div>
+	</body>
+
+<!-- A TRANSFERER EN FICHIER JS -->
+<script>
+'use strict';
+
+var fileName = 'data/20180524_NP_DAF-RFC5_Synthese-demat-services.txt';
+var separateur = '|';
+var key1 = 'ANNEE_MOIS';
+var key2a = 'CHAINE_FINANCIERE';
+var key2b = 'INDIC DEMAT';
+var key2c = 'CATEGORIE_ENTREPRISE';
+var idSVG01 = "svg01";
+var idSVG02 = "svg02";
+var idSVG03 = "svg03";
+
+var columnListFilter = ['ANNEE_MOIS','CHAINE_FINANCIERE','INDIC DEMAT','CATEGORIE_ENTREPRISE']
+var columnFilter1 = 'ANNEE_MOIS';
+var columnFilter2 = 'CHAINE_FINANCIERE';
+var columnFilter3 = 'INDIC DEMAT';
+var columnFilter4 = 'CATEGORIE_ENTREPRISE';
+var valFilter1;
+var valFilter2;
+var valFilter3;
+var valFilter4;
+
+// set the colors
+var z = d3.scaleOrdinal()
+		.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+// ou usage des catégories de couleurs
+var c10 = d3.scaleOrdinal(d3.schemeCategory10);
+var c20 = d3.scaleOrdinal(d3.schemeCategory20);
+var c20b = d3.scaleOrdinal(d3.schemeCategory20b);
+var c20c = d3.scaleOrdinal(d3.schemeCategory20c);
+
+// Fonction FILTRAGEROW filtrage des lignes du fichier
+var filtrageRow = function(donnees, colonne, valeur) {
+	if (valeur != null && (valeur+" ").length > 1) {
+	var filtered = [];
+		for (var i = 0; i < donnees.length; ++i) {
+			// ANNEE_MOIS est en première position du tableau : filtre sur année
+			if ( columnListFilter.indexOf(colonne) === 0 && donnees[i][colonne].substring(0,4) === valeur) {
+				filtered.push(donnees[i])
+				}
+			else if (columnListFilter.indexOf(colonne) > 0 && donnees[i][colonne] === valeur){
+				filtered.push(donnees[i])
+				}
+			}
+		donnees = filtered ;					
+		}
+	return donnees;
+	}
+// Fonction TOTAL : remontée du total des value de values
+var fonctionTotal = function(d) {
+	var i, j, t, max;
+	for (i = 0; i < d.length; ++i) {
+		j = 0;
+		t = 0;
+		max = 0;
+		for (j = 0; j < d[i].values.length; ++j) {
+			t += d[i].values[j].value;
+			if(d[i].values[j].value > max) max = d[i].values[j].value;
+			}
+		d[i].total = t;
+		d[i].max = max;
+		}
+	return d;
+	}
+
+var afficheLegendeVertical = function(g, keysmap, width) {
+	var legend = g.append("g")
+				.attr("font-family", "sans-serif")
+				.attr("font-size", 10)
+				//.attr("text-anchor", "start")
+			.selectAll("g")
+			.data(keysmap.slice().reverse())
+			.enter().append("g")
+				.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+	legend.append("rect")
+			.attr("x", width + 5)
+			.attr("width", 19)
+			.attr("height", 19)
+			//.attr("fill", z);
+			.attr("fill", (function(d) {return c20c(d);}));
+
+	legend.append("text")
+			.attr("x", width + 30)
+			.attr("y", 9.5)
+			.attr("dy", "0.32em")
+			.text(function(d) { return d; });
+	}
+	
+var prepAfficheTooltip = function(idSVG) {
+	// Prep the tooltip bits, initial display is hidden
+	var tooltip = d3.select(idSVG).append("g")
+		.attr("class", "tooltip1")
+		.style("z-index", 100)
+		.style("display", "none");
+			
+	tooltip.append("rect")
+		.attr("width", 60)
+		.attr("height", 20)
+		.attr("fill", "white")
+		.style("opacity", 0.5);
+
+	tooltip.append("text")
+		.attr("x", 30)
+		.attr("dy", "1.2em")
+		.style("text-anchor", "middle")
+		.attr("font-size", "12px")
+		.attr("font-weight", "bold");
+	
+	return tooltip;
+}
+
+// Fonction afficheValeursFiltres
+var	afficheValeursFiltres = function(key, array) {
+	if(key ==="ANNEE_MOIS" 
+		&& d3.select("#choixAnnee").selectAll("option")._groups[0].length == 0) {
+			d3.select("#choixAnnee").append("option").property("value", "").text("Annee...");
+			array.sort().reverse().forEach(function(element) {
+				d3.select("#choixAnnee").append("option").property("value", element).text(element);
+			});
+		}
+	if(key === "CHAINE_FINANCIERE" 
+		&& d3.select("#choixChaine").selectAll("option")._groups[0].length == 0) {
+			d3.select("#choixChaine").append("option").property("value", "").text("Chaîne...");
+			array.sort().forEach(function(element) {
+				d3.select("#choixChaine").append("option").property("value", element).text(element);
+			});
+		}
+	if(key ==="INDIC DEMAT" 
+		&& d3.select("#choixDemat").selectAll("option")._groups[0].length == 0) {
+			d3.select("#choixDemat").append("option").property("value", "").text("Type...");
+			array.sort().forEach(function(element) {
+				d3.select("#choixDemat").append("option").property("value", element).text(element);
+			});
+		}
+	if(key ==="CATEGORIE_ENTREPRISE" 
+		&& d3.select("#choixTypeTiers").selectAll("option")._groups[0].length == 0) {
+			d3.select("#choixTypeTiers").append("option").property("value", "").text("Entreprises...");
+			array.sort().forEach(function(element) {
+				d3.select("#choixTypeTiers").append("option").property("value", element).text(element);
+			});
+		}
+}
+
+var afficheSvgBarStack = function(fileName, separateur, key1, key2, idSVG) {
+	// create the svg
+	var svg = d3.select(idSVG).style("display", "none");
+	var margin = {top: 20, right: 100, bottom: 30, left: 40};
+	var width = +svg.attr("width") - margin.left - margin.right;
+	var height = +svg.attr("height") - margin.top - margin.bottom;
+	var g = svg.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	// create the tooltip
+	var tooltip = prepAfficheTooltip(idSVG);
+	// set x scale
+	var x = d3.scaleBand()
+			.rangeRound([0, width])
+			.paddingInner(0.05)
+			.align(0.1);
+
+	// set y scale
+	var y = d3.scaleLinear()
+			.rangeRound([height, 0]);
+
+	var dataset;
+	var nestedDataset;
+	
+	var keysmap = [];
+
+	d3.text(fileName, function(error, raw){
+		var dsv = d3.dsvFormat(separateur);
+		dataset = dsv.parse(raw);
+		// Application de la règle de filtrage
+		dataset = filtrageRow(dataset, columnFilter1, valFilter1);
+		dataset = filtrageRow(dataset, columnFilter2, valFilter2);
+		dataset = filtrageRow(dataset, columnFilter3, valFilter3);
+		dataset = filtrageRow(dataset, columnFilter4, valFilter4);
+	
+		// do whatever you want with data
+		nestedDataset = d3.nest()
+						.key(function(d) { return d[key1]; })
+						.key(function(d) { return d[key2];})
+						.rollup(function(leaves) {
+							return d3.sum(leaves, function(d) {return  +d.nbre});
+							})
+						.entries(dataset);
+
+		d3.map(nestedDataset)
+			.each(function(d1) {
+				d3.map(d1.values).each(function(d) {
+					d1[d.key]= d.value;
+					if (keysmap.indexOf(d.key)<0)
+						keysmap.push(d.key);
+					});
+				//delete d1.values;
+			})
+	
+		fonctionTotal(nestedDataset);	
+		
+		x.domain(nestedDataset.map(function(d) { return d.key; }));
+		y.domain([0, d3.max(nestedDataset, function(d) { return d.total; })]).nice();
+		z.domain(keysmap);
+
+		// Mise à jour liste de choix au premier affichage
+		afficheValeursFiltres(key2, keysmap);
+			
+		g.append("g")
+				.selectAll("g")
+				.data(d3.stack().keys(keysmap)(nestedDataset))
+				.enter()
+				.append("g")
+					//.attr("fill", function(d) { return z(d.key); })
+					.attr("fill", (function(d) { return c20c(d.key);}))
+				.selectAll("rect")
+				.data(function(d) { return d; })
+				.enter()
+					.append("rect")
+					.attr("x", function(d) { return x(d.data.key); })
+					.attr("y", function(d) { return y(d[1]); })
+					//.attr("y", function(d) { return y(d.data.values[0].value); })
+					.attr("height", function(d) { return y(d[0]) - y(d[1]); })
+					//.attr("height", function(d) { return y(d.data.values[0].value); })
+					.attr("width", x.bandwidth())
+				.on("mouseover", function() { tooltip.style("display", "inline"); })
+				.on("mouseout", function() { tooltip.style("display", "none"); })
+				.on("mousemove", function(d) {
+					var xPosition = d3.mouse(this)[0] - 5;
+					var yPosition = d3.mouse(this)[1] - 5;
+					tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+					tooltip.select("text").text(d3.format(",d")(d[1]-d[0]).replace(/,/g,'.'));
+				});
+		
+		// Affichage des axes
+		g.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0," + height + ")")
+				.call(d3.axisBottom(x));
+
+		g.append("g")
+				.attr("class", "axis")
+				.call(d3.axisLeft(y).ticks())
+			.append("text")
+				.attr("x", 2)
+				.attr("y", y(y.ticks().pop()) + 0.5)
+				.attr("dy", "0.32em")
+				.attr("fill", "#000")
+				.attr("text-anchor", "start");
+		
+		// Affichage de la légende
+		afficheLegendeVertical(g, keysmap, width);
+
+		})
+
+	// Set-up the export button
+	d3.select('#generateSVG01').on('click', function(){
+		envoiSVG(idSVG01, width, height)
+	});
+
+	d3.select('#generateSVG02').on('click', function(){
+		envoiSVG(idSVG02, width, height)
+	});
+	
+	// Affichage de l'image des commentaires ou des annotations
+	d3.select('#generateSVG01C').on('click', function(){afficheAnnotation('#img01Comm')});
+	d3.select('#generateSVG02C').on('click', function(){afficheAnnotation('#img02Comm')});
+	
+}
+
+var afficheSvgLineChart = function(fileName, separateur, key1, key2, idSVG) {
+	// create the svg
+	var svg = d3.select(idSVG).style("display", "none");
+	var margin = {top: 20, right: 100, bottom: 30, left: 40};
+	var width = +svg.attr("width") - margin.left - margin.right;
+	var height = +svg.attr("height") - margin.top - margin.bottom;
+	
+	var g = svg.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	// create the tooltip
+	var tooltip = prepAfficheTooltip(idSVG);
+	// set x scale
+	var x = d3.scaleBand()
+			.rangeRound([0, width])
+			.paddingInner(0.05)
+			.align(0.1);
+
+	// set y scale
+	var y = d3.scaleLinear()
+			.rangeRound([height, 0]);
+
+	var dataset;
+	var nestedDataset = [];
+	var nestedTotalPeriode;
+	var nestedTotalTypePeriode;
+	var keysmap = [];
+
+	d3.text(fileName, function(error, raw){
+		var dsv = d3.dsvFormat(separateur);
+		dataset = dsv.parse(raw);
+		// Application de la règle de filtrage
+		dataset = filtrageRow(dataset, columnFilter1, valFilter1);
+		dataset = filtrageRow(dataset, columnFilter2, valFilter2);
+		dataset = filtrageRow(dataset, columnFilter3, valFilter3);
+		dataset = filtrageRow(dataset, columnFilter4, valFilter4);
+		// do whatever you want with data
+		nestedTotalPeriode = d3.nest()
+						.key(function(d) { return d[key2]; })
+						.rollup(function(leaves) {
+							return d3.sum(leaves, function(d) {return  +d.nbre});
+							})
+						.entries(dataset);
+		
+		nestedTotalTypePeriode = d3.nest()
+						.key(function(d) { return d[key1]; })
+						.key(function(d) { return d[key2]; })
+						.rollup(function(leaves) {
+							return d3.sum(leaves, function(d) {return +d.nbre});
+							})
+						.entries(dataset);
+		fonctionTotal(nestedTotalTypePeriode);	
+
+		nestedDataset.totalPeriode = nestedTotalPeriode;
+		nestedDataset.totalTypePeriode = nestedTotalTypePeriode;
+		nestedDataset.totalGeneral = 0;
+		for (var i = 0; i < nestedDataset.totalTypePeriode.length; ++i) {
+			nestedDataset.totalGeneral += nestedDataset.totalTypePeriode[i].total
+			}
+		for (var i = 0; i < nestedDataset.totalTypePeriode.length; ++i) {
+			nestedDataset.totalTypePeriode[i].pourcentageType = nestedDataset.totalTypePeriode[i].total/nestedDataset.totalGeneral
+			for (var j = 0; j < nestedDataset.totalTypePeriode[i].values.length; ++j) {
+				nestedDataset.totalTypePeriode[i].values[j].pourcentageTypePeriode = nestedDataset.totalTypePeriode[i].values[j].value/nestedDataset.totalPeriode[j].value
+				}
+			}
+
+		d3.map(nestedDataset.totalTypePeriode)
+			.each(function(d1) {
+				if (keysmap.indexOf(d1.key)<0)
+						keysmap.push(d1.key);
+			})
+		
+		var arrayPeriode = nestedDataset.totalPeriode.map(function(d) { return d.key; });
+		var arrayAnnee = nestedDataset.totalPeriode
+			.map(function(d) {
+				return d.key.split("-")[0]; });
+		arrayAnnee = arrayAnnee.filter(function(item, pos) {
+				return arrayAnnee.indexOf(item) == pos;
+			});
+		
+		x.domain(arrayPeriode);
+		y.domain([0, d3.max(nestedDataset.totalTypePeriode, function(d) { return d.max; })]).nice();
+		z.domain(keysmap);	
+		
+		// Mise à jour liste de choix au premier affichage
+		afficheValeursFiltres(key2, arrayAnnee);
+		afficheValeursFiltres(key1, keysmap);
+			
+		// L'axe des abcisses étant un scaleBand il faut décaler les points de la ligne : il ne faut pas passer directement par la fonctionx
+		var xBandwidth = function(d) {return (.5 * x.bandwidth()) + x (d) }
+		
+		// calcul des coordonnées de la ligne (avec décalage sur x)
+		var line = d3.line()
+			.x(function(d) { return xBandwidth(d.key); })
+			.y(function(d) { return y(d.value); });
+		
+		// Affichage des axes
+		g.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(d3.axisBottom(x));
+
+		g.append("g")
+			.attr("class", "axis")
+			.call(d3.axisLeft(y).ticks())
+			.append("text")
+				.attr("x", 2)
+				.attr("y", y(y.ticks().pop()) + 0.5)
+				.attr("dy", "0.32em")
+				.attr("fill", "#000")
+				.attr("text-anchor", "start");
+		
+		var type = g.selectAll(".type")
+			.data(nestedDataset.totalTypePeriode)
+			.enter()
+				.append("g")
+				.attr("class", "type");			
+		
+		type.append("path")
+			.attr("class", function(d) { return "line " + d.key; })
+			.attr("d", function(d) { return line(d.values); })
+			.style("stroke", function(d) { return c20c(d.key); });
+
+		type.append("text")
+			.datum(function(d) { return {key: d.key, valeur: d.values[d.values.length - 1]}; })
+			.attr("class", function(d) { return d.key})
+			.attr("transform", function(d) { return "translate(" + xBandwidth(d.valeur.key) + "," + y(d.valeur.value) + ")"; })
+			.attr("x", 10)
+			.attr("dy", "0.35em")
+			.style("font", "10px sans-serif")
+			.attr("text-anchor", "start")
+			.style("fill", function(d) { return c20c(d.key); })
+			.text(function(d) { return d.key; });
+
+		var dKey;
+		type.selectAll("circle")
+			.filter(function(d) { return '.'+ d.key })
+			.data(function(d) { dKey = d.key; return d.values })
+			.enter()
+				.append("circle")
+				.attr("class", dKey)
+				.attr("cx", function(d) { return xBandwidth(d.key)})
+				.attr("cy", function(d) { return y(d.value)})
+				.attr("r", 3)
+				.style("fill", c20c(dKey));	
+
+		var focus = g.append("g")
+			.attr("class", "focus")
+			.style("display", "none");
+		focus.append("line")
+			.attr("class", "x-hover-line hover-line")
+			.attr("y1", 0)
+			.attr("y2", height);
+		focus.append("line")
+			.attr("class", "y-hover-line hover-line")
+			.attr("x1", width)
+			.attr("x2", width);
+		focus.append("circle")
+			.attr("r", 7.5);
+		focus.append("text")
+			.attr("x", 15)
+			.attr("dy", ".31em");			
+				
+		svg.append("rect")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+			.attr("class", "overlay")
+			.attr("width", width)
+			.attr("height", height)
+			.on("mouseover", function() { focus.style("display", null); })
+			.on("mouseout", function() { focus.style("display", "none"); })
+			.on("mousemove", mousemove);
+
+		function mousemove() {
+			// recherche abcisse en fonction de la position de la souris
+			var bandMouse = Math.trunc(d3.mouse(this)[0]/x.bandwidth());
+			if (bandMouse >= x.domain().length) bandMouse = x.domain().length - 1;
+			var periodeMouse = x.domain()[bandMouse];
+			// recherche ordonnée en fonction de la position de la souris
+			var volumeMouse = y.invert(d3.mouse(this)[1]);
+			var yArray = [];
+			for(var i=0; i < nestedDataset.totalTypePeriode.length; i++){
+				var yType = nestedDataset.totalTypePeriode[i].values[bandMouse].value
+				yArray.push(yType);
+				}
+			yArray.sort(function(a, b) {
+					return a - b;
+				});
+			
+			var i=0;
+			var indicateur = false;
+			do {
+				if (volumeMouse <= yArray[i]) {
+					volumeMouse = yArray[i];
+					indicateur = true ;
+					}
+				if (!indicateur && volumeMouse > yArray[yArray.length - 1]) {
+					volumeMouse = yArray[yArray.length - 1];
+					indicateur = true ;
+					}
+				i++;
+				} while (i < yArray.length && !indicateur);
+				
+			if (!indicateur) volumeMouse = yArray[0];
+			focus.attr("transform", "translate(" + xBandwidth(periodeMouse) + "," + y(volumeMouse) + ")");
+			focus.select(".x-hover-line").attr("y2", height - y(volumeMouse));
+			focus.select(".y-hover-line").attr("x2", width + width);
+			focus.select("text").text(function(d) { return volumeMouse;});
+
+			}
+	
+		
+	// ANNOTATIONS
+	const annotations = [{
+		note: {
+			label: "Alerte !",
+			title: "Chute non justifiée",
+			wrap: 150,
+            align: "middle"
+			},
+		connector: {
+            end: "arrow" // 'dot' also available
+			},
+		x: (xBandwidth("2017-12")), y: y(19247),
+		dy: 50, dx: -100
+		},
+		{
+		type: d3.annotationCalloutCircle,
+		note: {
+			label: "1er janvier 2018",
+			title: "Obligation pour les ETI",
+			wrap: 150,
+            align: "middle"
+			},
+		x: (xBandwidth("2018-01")), y: y(31993),
+		dy: -10, dx: 100,
+		subject: { radius: 20 }
+		}]
+		.map(function(d){ d.color = "red"; return d});
+
+	const makeAnnotations = d3.annotation()
+		.type(d3.annotationLabel)
+		.annotations(annotations);
+
+	g.append("g")
+		.attr("class", "annotation-group")
+		.attr("id", idSVG03 + "Annotation")
+		.call(makeAnnotations);
+		
+		})
+
+	// Set-up the export button
+	d3.select('#generateSVG03').on('click', function(){
+		envoiSVG(idSVG03, width, height)
+	});
+
+	// Affichage de l'image des commentaires ou des annotations
+	d3.select('#generateSVG03C').on('click', function(){afficheAnnotation('#' + idSVG03 + 'Annotation')});
+
+}
+
+// AFFICHAGE DES GRAPHIQUES
+function afficheSVGs() {
+	// Suppression des anciens graphiques
+	d3.select("#" + idSVG01).selectAll("g").transition().duration(400).ease(d3.easeCircleIn).remove();
+	d3.select("#" + idSVG02).selectAll("g").transition().duration(400).ease(d3.easeCircleIn).remove();
+	d3.select("#" + idSVG03).selectAll("g").transition().duration(400).ease(d3.easeCircleIn).remove();
+
+	//Préparation de l'affichage  (Display none par défaut)
+	afficheSvgBarStack(fileName, separateur, key1, key2a, "#" + idSVG01);
+	//afficheSvgBarStack(fileName, separateur, key1, key2b, "#" + idSVG02);
+	afficheSvgBarStack(fileName, separateur, key1, key2c, "#" + idSVG02);
+	afficheSvgLineChart(fileName, separateur, key2b, key1, "#" + idSVG03);
+	
+	// Affichage des graphiques
+	d3.select("#" + idSVG01).transition().duration(100).ease(d3.easeCircleOut).style("display", "inline")
+	d3.select("#" + idSVG02).transition().duration(100).ease(d3.easeCircleOut).style("display", "inline")
+	d3.select("#" + idSVG03).transition().duration(100).ease(d3.easeCircleOut).style("display", "inline")
+	}
+	
+afficheSVGs();
+
+// RE AFFICHAGE DES GRAPHIQUES DES QU'UN FILTRE EST MODIFIE	
+d3.select("#choixAnnee").on("change", function() { 
+	valFilter1 = d3.select(this).property("value");
+	afficheSVGs();
+	});
+d3.select("#choixChaine").on("change", function() { 
+	valFilter2 = d3.select(this).property("value");
+	afficheSVGs();
+	});
+d3.select("#choixDemat").on("change", function() { 
+	valFilter3 = d3.select(this).property("value");
+	afficheSVGs();
+	});
+d3.select("#choixTypeTiers").on("change", function() { 
+	valFilter4 = d3.select(this).property("value");
+	afficheSVGs();
+	});
+
+// Affichage d'une annotation	
+function afficheAnnotation(idAnnotation) {
+	if (d3.select(idAnnotation).style("display") ==="none") {
+		d3.select(idAnnotation).style("display", "inline");
+	} else {
+		d3.select(idAnnotation).style("display", "none");
+	}
+}
+// Below are the functions that handle actual exporting:
+// getSVGString ( svgNode ) and svgString2Image( svgString, width, height, format, callback )
+
+function envoiSVG(idSVG, width, height) {
+	var svgString = getSVGString(d3.select('#' + idSVG).node());
+		svgString2Image( svgString, width, height, 'png', save ); // passes Blob and filesize String to the callback
+		function save( dataBlob, filesize ){
+			saveAs( dataBlob, idSVG +'.png' ); // FileSaver.js function
+		}
+}
+
+function getSVGString( svgNode ) {
+	svgNode.setAttribute('xlink', 'http://www.w3.org/1999/xlink');
+	var cssStyleText = getCSSStyles( svgNode );
+	appendCSS( cssStyleText, svgNode );
+
+	var serializer = new XMLSerializer();
+	var svgString = serializer.serializeToString(svgNode);
+	svgString = svgString.replace(/(\w+)?:?xlink=/g, 'xmlns:xlink='); // Fix root xlink without namespace
+	svgString = svgString.replace(/NS\d+:href/g, 'xlink:href'); // Safari NS namespace fix
+
+	return svgString;
+
+	function getCSSStyles( parentElement ) {
+		var selectorTextArr = [];
+
+		// Add Parent element Id and Classes to the list
+		selectorTextArr.push( '#'+parentElement.id );
+		for (var c = 0; c < parentElement.classList.length; c++)
+				if ( !contains('.'+parentElement.classList[c], selectorTextArr) )
+					selectorTextArr.push( '.'+parentElement.classList[c] );
+
+		// Add Children element Ids and Classes to the list
+		var nodes = parentElement.getElementsByTagName("*");
+		for (var i = 0; i < nodes.length; i++) {
+			var id = nodes[i].id;
+			if ( !contains('#'+id, selectorTextArr) )
+				selectorTextArr.push( '#'+id );
+
+			var classes = nodes[i].classList;
+			for (var c = 0; c < classes.length; c++)
+				if ( !contains('.'+classes[c], selectorTextArr) )
+					selectorTextArr.push( '.'+classes[c] );
+		}
+
+		// Extract CSS Rules
+		var extractedCSSText = "";
+		for (var i = 0; i < document.styleSheets.length; i++) {
+			var s = document.styleSheets[i];
+			
+			try {
+			    if(!s.cssRules) continue;
+			} catch( e ) {
+		    		if(e.name !== 'SecurityError') throw e; // for Firefox
+		    		continue;
+		    	}
+
+			var cssRules = s.cssRules;
+			for (var r = 0; r < cssRules.length; r++) {
+				if ( contains( cssRules[r].selectorText, selectorTextArr ) )
+					extractedCSSText += cssRules[r].cssText;
+			}
+		}
+	
+		return extractedCSSText;
+
+		function contains(str,arr) {
+			return arr.indexOf( str ) === -1 ? false : true;
+		}
+	}
+
+	function appendCSS( cssText, element ) {
+		var styleElement = document.createElement("style");
+		styleElement.setAttribute("type","text/css"); 
+		styleElement.innerHTML = cssText;
+		var refNode = element.hasChildNodes() ? element.children[0] : null;
+		element.insertBefore( styleElement, refNode );
+	}
+}
+
+function svgString2Image( svgString, width, height, format, callback ) {
+	var format = format ? format : 'png';
+
+	var imgsrc = 'data:image/svg+xml;base64,'+ btoa( unescape( encodeURIComponent( svgString ) ) ); // Convert SVG string to data URL
+
+	var canvas = document.createElement("canvas");
+	var context = canvas.getContext("2d");
+
+	canvas.width = width;
+	canvas.height = height;
+
+	var image = new Image();
+	image.onload = function() {
+		context.clearRect ( 0, 0, width, height );
+		context.drawImage(image, 0, 0, width, height);
+
+		canvas.toBlob( function(blob) {
+			var filesize = Math.round( blob.length/1024 ) + ' KB';
+			if ( callback ) callback( blob, filesize );
+		});
+	};
+	
+	image.src = imgsrc;
+}
+
+</script>
+</html>

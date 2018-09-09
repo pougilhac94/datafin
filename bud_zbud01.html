@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+		<title>ZBUD01</title>
+		<!-- Bibliothèque scripts JQuery pour Bootstrap et Datatables + FonrAwesome-->
+		<script src="jQuery/jquery-1.12.4.min.js"></script>
+		<script src="datatables/DataTables-1.10.16.min.js"></script>
+		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="fontawesome/js/all.js"></script>
+		<!-- Bibliothèque script D3JS V4 -->
+		<script src="/d3js/d3.v5.min.js"></script>
+		<!-- Lot de scripts DATATABLES pour boutons et fonctions d'export des données -->
+		<script src="dataTables/dataTables.buttons.min.js"></script>
+		<script src="dataTables/buttons.flash.min.js"></script>
+		<script src="dataTables/jszip.min.js"></script>
+		<script src="dataTables/pdfmake.min.js"></script>
+		<script src="dataTables/vfs_fonts.js"></script>
+		<script src="dataTables/buttons.html5.min.js"></script>
+		<script src="dataTables/buttons.print.min.js"></script>		
+		<!-- Bibliothèques CSS Bootstrap et Datatables -->
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="dataTables/DataTables-1.10.16.min.css">
+		<!-- Bibliothèques CSS personnelles -->
+		<link rel="stylesheet" type="text/css" href="css/uploadfile.css">
+		<link rel="stylesheet" type="text/css" href="css/sunburst.css"/>
+	</head>
+
+	<body class="container-fluid">
+		<!-- En-tête général -->
+		<section class="row header">
+			<span class="col-auto" href="http://d3js.org"><img src="images/d3js.png" alt="d3js.png" height=25 width=25></span>
+			<div href="/home" class="col-auto"><i class="fas fa-home"></i><a href="/home"> Accueil</a></div>
+			<div href="/aboutus" class="col-auto"><i class="fas fa-info"></i><a href="/aboutus"> Aide</a></div>
+			<div href="/menu" class="col-auto"><i class="fas fa-bars"></i><a href="/menu"> Menu</a></div>
+			<div href="/cgef_demat" class="col-auto"><i class="fas fa-eye"></i><a href="/cgef_demat"> CGEF</a></div>
+			<div href="/bud_zbud01" class="col-auto"><i class="fas fa-chart-line"></i><a href="/bud_zbud01"> Budget</a></div>
+			<div href="mailto:prenom.nom@intradef.gouv.fr" class="col-auto"><i class="fas fa-address-card"></i><a href="mailto:prenom.nom@intradef.gouv.fr"> Contact</a></div>
+		</section>
+		<section class="row jumbotron jumbotron-datavis">
+			
+			<div class="col-9 " id='titregeneral'>
+				<!-- Affichage par défaut (suppression automatique si Javasript présent) -->
+				<h1>Votre navigateur ne supporte pas javascript, la datavisualisation ne pourra pas s'afficher</h1>
+			</div>
+			<!--<div class="col-lg-3 rounded border border-3" id='formupload'></div>	-->
+			<!--
+			<div class="col-8 " id='titregeneral'>
+				<h1>Votre navigateur ne supporte pas javascript, la datavisualisation ne pourra pas s'afficher</h1>
+			</div>
+			<div class="col-2 border-dark rounded border-3 border-groove" id='formupload'></div>
+			<div class="col-2 border-dark rounded border-3 border-groove" id='enteteload'></div>		
+			-->	
+		</section>
+		<div class="col-lg-3 rounded border border-3" id='formupload'></div>
+		<!-- Corps du document composé de 3 colonnes -->
+		<section class="row">
+			<!-- Colonne gauche banalisée -->
+			<div class="col-lg-2 border border-3 border-white" id='col-gauche'></div>
+			<!-- Colonne centrale -->
+			<div class="col" id='col-centre'>
+				<!-- Zone titre -->
+				<div class="row container-fluid" id="titredatavisualisation"></div>
+				<!-- Zone affichage datavisualisation -->
+				<div class="row">
+					<!-- Zone principale d'affichage de la Datavisualisation -->
+					<div class="col-9" id="main">
+						<!-- Zone affichage du chemin hiérarchique de la zone sélectionnée sur le graphique -->
+						<div id="sequence"></div>
+						<!-- Zone affichage représentation graphique -->
+						<div id="chart"></div>
+						<br>
+					</div>
+					<!-- Colonne latérale droite pour les options -->
+					<div class="col-3" id="sidebar"></div>
+				</div>
+				<!-- Zone affichage des données DataTables -->
+				<div class="row border-top border-dark pt-2">
+					<div class="col-12" id="affichageFichierDonnees"></div>
+				</div>
+			</div>
+			<!-- Colonne droite banalisée -->
+			<div class="col-lg-2 border border-3 border-white" id='col-droite'></div>
+		</section>
+		<!-- Pied de page -->
+		<section class="row footer justify-content-md-center text-center">
+			<p>Site développé avec D3JS, Datatables,Bootstrap et Font Awesome<br>
+			© Copyright 2018 SGA - Direction des affaires financières - Service du réseau financier et des comptabilités</p>
+		</section>
+	<!-- Appel script pour compléter le HTML -->
+	<script type="text/javascript" src="js/completeHTML.js"></script>
+	<!-- Appel script pour choisir le fichier de données -->	
+	<script type="text/javascript" src="js/uploadfile.js"></script>
+	<!-- Appel script pour afficher la datavisualisation (D3JS) -->	
+	<script type="text/javascript" src="js/bud_zbud01.js"></script>
+	<!-- Appel script pour afficher la table de données (DataTables) -->
+	<script type="text/javascript" src="js/bud_zbud01_datatables.js"></script>
+	</body>
+</html>
+JS)
